@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'GFBarcodeScanner_Example' do
+  pod 'GFBarcodeScanner', :path => '../'
+
+  target 'GFBarcodeScanner_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
