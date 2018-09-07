@@ -1,0 +1,6 @@
+framework module GFBarcodeScanner {
+  umbrella header "GFBarcodeScanner-umbrella.h"
+
+  export *
+  module * { export * }
+}

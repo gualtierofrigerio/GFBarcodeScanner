@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		49E91CD3A239D007189B6A30 /* Pods-GFBarcodeScanner_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFBarcodeScanner_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-GFBarcodeScanner_Example/Pods-GFBarcodeScanner_Example.release.xcconfig"; sourceTree = "<group>"; };
-		49ECBD28CCBF8B7EA07B7968 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		49ECBD28CCBF8B7EA07B7968 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4F0B566B092CE583496D7A8B /* Pods_GFBarcodeScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GFBarcodeScanner_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C3EEB53C6738FD1B937373B /* Pods-GFBarcodeScanner_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFBarcodeScanner_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GFBarcodeScanner_Tests/Pods-GFBarcodeScanner_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* GFBarcodeScanner_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GFBarcodeScanner_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,8 +43,8 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		666E2AD8807A0209019EF82B /* Pods-GFBarcodeScanner_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFBarcodeScanner_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GFBarcodeScanner_Tests/Pods-GFBarcodeScanner_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		7D168873DC7535F420972092 /* GFBarcodeScanner.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = GFBarcodeScanner.podspec; path = ../GFBarcodeScanner.podspec; sourceTree = "<group>"; };
-		8D7100FA33C1CE3320E6C106 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		7D168873DC7535F420972092 /* GFBarcodeScanner.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GFBarcodeScanner.podspec; path = ../GFBarcodeScanner.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8D7100FA33C1CE3320E6C106 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		BF5BED53DB634A27CBFA90BB /* Pods_GFBarcodeScanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GFBarcodeScanner_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF7E2D86843713A2208B6018 /* Pods-GFBarcodeScanner_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFBarcodeScanner_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GFBarcodeScanner_Example/Pods-GFBarcodeScanner_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,10 +212,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 5V4J7VM9P5;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 5V4J7VM9P5;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -469,10 +471,12 @@
 			baseConfigurationReference = EF7E2D86843713A2208B6018 /* Pods-GFBarcodeScanner_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5V4J7VM9P5;
 				INFOPLIST_FILE = GFBarcodeScanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = it.epress.GFBarcodeScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -484,10 +488,12 @@
 			baseConfigurationReference = 49E91CD3A239D007189B6A30 /* Pods-GFBarcodeScanner_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5V4J7VM9P5;
 				INFOPLIST_FILE = GFBarcodeScanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = it.epress.GFBarcodeScanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -498,6 +504,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C3EEB53C6738FD1B937373B /* Pods-GFBarcodeScanner_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 5V4J7VM9P5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -520,6 +527,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 666E2AD8807A0209019EF82B /* Pods-GFBarcodeScanner_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 5V4J7VM9P5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

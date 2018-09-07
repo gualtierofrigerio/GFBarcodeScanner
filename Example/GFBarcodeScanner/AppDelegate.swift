@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  GFBarcodeScanner
 //
-//  Created by gualtierofrigerio on 08/31/2018.
+//  Created by gualtierofrigerio on 09/01/2018.
 //  Copyright (c) 2018 gualtierofrigerio. All rights reserved.
 //
 

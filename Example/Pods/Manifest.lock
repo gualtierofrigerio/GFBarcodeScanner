@@ -1,0 +1,16 @@
+PODS:
+  - GFBarcodeScanner (0.1.0)
+
+DEPENDENCIES:
+  - GFBarcodeScanner (from `../`)
+
+EXTERNAL SOURCES:
+  GFBarcodeScanner:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GFBarcodeScanner: c5363c24dd1a84357260d6028ae90ccf9a4351b8
+
+PODFILE CHECKSUM: d700e8ff777d321fbe876413aea2196f24ecb4cf
+
+COCOAPODS: 1.5.3

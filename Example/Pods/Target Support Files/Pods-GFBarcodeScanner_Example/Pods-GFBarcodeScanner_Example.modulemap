@@ -1,0 +1,6 @@
+framework module Pods_GFBarcodeScanner_Example {
+  umbrella header "Pods-GFBarcodeScanner_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,5 +1,5 @@
 import XCTest
-import GFBarcodeScanner
+//import GFBarcodeScanner
 
 class Tests: XCTestCase {
     
