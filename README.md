@@ -1,10 +1,5 @@
 # GFBarcodeScanner
 
-[![CI Status](https://img.shields.io/travis/gualtierofrigerio/GFBarcodeScanner.svg?style=flat)](https://travis-ci.org/gualtierofrigerio/GFBarcodeScanner)
-[![Version](https://img.shields.io/cocoapods/v/GFBarcodeScanner.svg?style=flat)](https://cocoapods.org/pods/GFBarcodeScanner)
-[![License](https://img.shields.io/cocoapods/l/GFBarcodeScanner.svg?style=flat)](https://cocoapods.org/pods/GFBarcodeScanner)
-[![Platform](https://img.shields.io/cocoapods/p/GFBarcodeScanner.svg?style=flat)](https://cocoapods.org/pods/GFBarcodeScanner)
-
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -22,7 +17,7 @@ pod 'GFBarcodeScanner'
 
 ## Author
 
-gualtierofrigerio, gualtiero.frigerio@epress.it
+gualtierofrigerio, gualtiero.frigerio@gmail.com
 
 ## License
 
