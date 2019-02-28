@@ -8,6 +8,7 @@
 import Foundation
 import QuartzCore
 import AVFoundation
+import UIKit
 
 @available(iOS 10.0, *)
 public class GFBarcodeScanner:NSObject {
@@ -72,6 +73,27 @@ public class GFBarcodeScanner:NSObject {
         return session
     }
     
+    func resizeCameraView() {
+        guard let previewLayer = previewLayer else {return}
+        previewLayer.frame = cameraView!.layer.bounds
+        switch UIApplication.shared.statusBarOrientation {
+        case .portrait:
+            previewLayer.connection?.videoOrientation = .portrait
+            break
+        case .portraitUpsideDown:
+            previewLayer.connection?.videoOrientation = .portraitUpsideDown
+            break
+        case .landscapeLeft:
+            previewLayer.connection?.videoOrientation = .landscapeLeft
+            break
+        case .landscapeRight:
+            previewLayer.connection?.videoOrientation = .landscapeRight
+            break
+        default:
+            break
+        }
+    }
+    
     func requestAccessCallback() {
         DispatchQueue.main.async {
             self.startScanning()
@@ -101,10 +123,10 @@ public class GFBarcodeScanner:NSObject {
             return
         }
         self.session = session
-        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-        previewLayer.frame = cameraView.layer.bounds
-        previewLayer.videoGravity = .resizeAspectFill
-        cameraView.layer.addSublayer(previewLayer)
+        previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        previewLayer!.frame = cameraView.layer.bounds
+        previewLayer!.videoGravity = .resizeAspectFill
+        cameraView.layer.addSublayer(previewLayer!)
         queue.async {
             session.startRunning()
         }
@@ -113,12 +135,14 @@ public class GFBarcodeScanner:NSObject {
     public func stopScanning() {
         self.session?.stopRunning()
     }
-    
+}
+
+extension GFBarcodeScanner {
     public func getBarcodeStringFromCapturedObjects(metadataObjects:[AVMetadataObject]) -> [String] {
         var codes:[String] = []
         for metadata in metadataObjects {
             if let object = metadata as? AVMetadataMachineReadableCodeObject,
-               let stringValue = object.stringValue {
+                let stringValue = object.stringValue {
                 codes.append(stringValue)
             }
         }

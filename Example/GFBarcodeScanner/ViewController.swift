@@ -12,13 +12,15 @@ import GFBarcodeScanner
 class ViewController: UIViewController {
 
     @IBOutlet var resultLabel:UILabel!
+    @IBOutlet var scanView:UIView!
 
     @IBAction func scanButtonTap(_ sender:Any) {
         if #available(iOS 10.0, *) {
             let barcodeVC = GFBarcodeScannerViewController()
             barcodeVC.modalPresentationStyle = .currentContext
+            let options = GFBarcodeScannerOptions(fullScreen:true)
             self.present(barcodeVC, animated: true) {
-                barcodeVC.startScanning(options:nil, completion: { (codes, error) in
+                barcodeVC.startScanning(options:options, completion: { (codes, error) in
                     if codes.count > 0 {
                         DispatchQueue.main.async {
                             self.resultLabel.text = codes[0]
@@ -32,7 +34,7 @@ class ViewController: UIViewController {
                 })
             }
         } else {
-            // Fallback on earlier versions
+            print("not supported")
         }
     }
     
@@ -44,6 +46,5 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-
 }
 

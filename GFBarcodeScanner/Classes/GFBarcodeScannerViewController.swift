@@ -10,16 +10,30 @@ import Foundation
 import UIKit
 
 public struct GFBarcodeScannerOptions {
-    let closeButtonText:String
-    let closeButtonTextColor:UIColor
-    let backgroundColor:UIColor
-    let toolbarHeight:CGFloat
+    var closeButtonText:String!
+    var closeButtonTextColor:UIColor!
+    var backgroundColor:UIColor!
+    var toolbarHeight:CGFloat!
+    var fullScreen:Bool!
     
     init() {
-        closeButtonText = "Close"
-        closeButtonTextColor = UIColor.black
-        backgroundColor = UIColor.white
-        toolbarHeight = 40
+        self.init(fullScreen: false)
+    }
+    
+    public init(fullScreen:Bool) {
+        if fullScreen {
+            closeButtonText = "Close"
+            closeButtonTextColor = UIColor.black
+            backgroundColor = UIColor.white
+            toolbarHeight = 60
+        }
+        else {
+            toolbarHeight = 0
+            backgroundColor = UIColor.white
+            closeButtonText = ""
+            closeButtonTextColor = UIColor.white
+        }
+        self.fullScreen = fullScreen
     }
 }
 
@@ -30,44 +44,17 @@ public class GFBarcodeScannerViewController : UIViewController {
     var scanner:GFBarcodeScanner?
     var completion:(([String], NSError?) -> Void)?
     var cameraView:UIView!
-    
-    override public func viewDidLoad() {
-        print("view did load")
-
-        print("finito view did load")
-    }
+    var isFullScreen = false
     
     override public func viewDidAppear(_ animated: Bool) {
-        print("view did appear")
         if let completion = self.completion {
             self.startScanning(options: self.options, completion: completion)
         }
     }
     
-    func configureView() {
-        var opt = self.defaultOptions
-        if let options = self.options {
-            opt = options
-        }
-        // setup the toolbar with close button
-        var frame = self.view.frame
-        frame.size.height = opt.toolbarHeight
-        let toolbarView = UIView.init(frame: frame)
-        toolbarView.backgroundColor = opt.backgroundColor
-        
-        let closeButton = UIButton.init(frame: toolbarView.frame)
-        closeButton.addTarget(self, action: #selector(self.closeButtonTap(_:)), for: .touchUpInside)
-        closeButton.setTitle(opt.closeButtonText, for: .normal)
-        closeButton.setTitleColor(opt.closeButtonTextColor, for: .normal)
-        
-        toolbarView.addSubview(closeButton)
-        self.view.addSubview(toolbarView)
-        
-        frame = self.view.frame
-        frame.origin.y = opt.toolbarHeight
-        frame.size.height = frame.size.height - opt.toolbarHeight
-        cameraView = UIView.init(frame: frame)
-        self.view.addSubview(cameraView)
+    public override func viewWillLayoutSubviews() {
+        self.cameraView?.frame = getCameraViewFrame()
+        self.scanner?.resizeCameraView()
     }
     
     public func startScanning(options:GFBarcodeScannerOptions?, completion:@escaping(_ results:[String], _ error:NSError?) -> Void) {
@@ -83,11 +70,56 @@ public class GFBarcodeScannerViewController : UIViewController {
     public func stopScanning() {
         self.scanner?.stopScanning()
     }
+}
+
+extension GFBarcodeScannerViewController {
     
-    @objc func closeButtonTap(_ sender:Any) {
-        //self.dismiss(animated: true, completion: nil)
+    @objc private func closeButtonTap(_ sender:Any) {
         self.scanner?.stopScanning()
         self.completion?([], GFBarcodeScanner.createError(withMessage: "User closed the capture view", code: 0))
+    }
+    
+    private func configureView() {
+        var opt = self.defaultOptions
+        if let options = self.options {
+            opt = options
+        }
+        self.isFullScreen = opt.fullScreen
+        
+        var frame = self.view.frame
+        
+        if opt.toolbarHeight > 0 {
+            frame.size.height = opt.toolbarHeight
+            let toolbarView = UIView.init(frame: frame)
+            toolbarView.backgroundColor = opt.backgroundColor
+            
+            let closeButton = UIButton.init(frame: toolbarView.frame)
+            closeButton.addTarget(self, action: #selector(self.closeButtonTap(_:)), for: .touchUpInside)
+            closeButton.setTitle(opt.closeButtonText, for: .normal)
+            closeButton.setTitleColor(opt.closeButtonTextColor, for: .normal)
+            
+            toolbarView.addSubview(closeButton)
+            self.view.addSubview(toolbarView)
+        }
+        
+        let cameraViewFrame = getCameraViewFrame()
+        cameraView = UIView.init(frame: cameraViewFrame)
+        self.view.addSubview(cameraView)
+    }
+    
+    private func getCameraViewFrame() -> CGRect {
+        var frame = self.view.frame
+        if isFullScreen == false {
+            if let superView = self.view.superview {
+                frame.origin = CGPoint(x: 0, y: 0)
+                frame.size = superView.frame.size
+            }
+        }
+        else if let opt = self.options {
+            frame.origin.y = opt.toolbarHeight
+            frame.size.height = frame.size.height - opt.toolbarHeight
+        }
+        return frame
     }
 }
 
