@@ -100,9 +100,18 @@
                                     <action selector="scanInViewButtonTap:" destination="dEt-bc-Fo2" eventType="touchUpInside" id="UUq-lN-v3i"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lo7-at-mYF">
+                                <rect key="frame" x="150" y="28" width="79" height="30"/>
+                                <state key="normal" title="Screenshot"/>
+                                <connections>
+                                    <action selector="screenshotButtonTap:" destination="dEt-bc-Fo2" eventType="touchUpInside" id="a5G-zq-OVY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="lo7-at-mYF" firstAttribute="centerX" secondItem="XoL-iu-Tyz" secondAttribute="centerX" id="0AB-uE-1h5"/>
+                            <constraint firstItem="lo7-at-mYF" firstAttribute="top" secondItem="0tQ-iP-JrQ" secondAttribute="bottom" constant="8" id="Lqs-J7-7Tu"/>
                             <constraint firstItem="jzB-vT-wS1" firstAttribute="leading" secondItem="XoL-iu-Tyz" secondAttribute="leading" constant="29" id="hKl-v5-jqO"/>
                             <constraint firstItem="aL5-A8-dG4" firstAttribute="top" secondItem="0tQ-iP-JrQ" secondAttribute="bottom" constant="8" id="od5-5s-8VL"/>
                             <constraint firstItem="jzB-vT-wS1" firstAttribute="top" secondItem="0tQ-iP-JrQ" secondAttribute="bottom" constant="8" id="r7x-cM-C0T"/>
@@ -111,6 +120,7 @@
                     </view>
                     <connections>
                         <outlet property="resultLabel" destination="apZ-Zw-Yfn" id="QJc-iB-w0n"/>
+                        <outlet property="scanButton" destination="aL5-A8-dG4" id="Smr-p1-Gbf"/>
                         <outlet property="scanView" destination="BVK-Lj-aVB" id="Dvz-kg-Z1d"/>
                     </connections>
                 </viewController>

@@ -10,11 +10,43 @@ import QuartzCore
 import AVFoundation
 import UIKit
 
+protocol AVCaptureMetaAndVideoDelegate: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureMetadataOutputObjectsDelegate {
+    
+}
+
+public struct GFBarcodeScannerOptions {
+    var closeButtonText:String!
+    var closeButtonTextColor:UIColor!
+    var backgroundColor:UIColor!
+    var toolbarHeight:CGFloat!
+    var fullScreen:Bool!
+    
+    init() {
+        self.init(fullScreen: false)
+    }
+    
+    public init(fullScreen:Bool) {
+        if fullScreen {
+            closeButtonText = "Close"
+            closeButtonTextColor = UIColor.black
+            backgroundColor = UIColor.white
+            toolbarHeight = 60
+        }
+        else {
+            toolbarHeight = 0
+            backgroundColor = UIColor.white
+            closeButtonText = ""
+            closeButtonTextColor = UIColor.white
+        }
+        self.fullScreen = fullScreen
+    }
+}
+
 @available(iOS 10.0, *)
 public class GFBarcodeScanner:NSObject {
     
     var options:GFBarcodeScannerOptions!
-    var delegate:AVCaptureMetadataOutputObjectsDelegate?
+    var delegate:AVCaptureMetaAndVideoDelegate?
     var cameraView:UIView?
     var previewLayer:AVCaptureVideoPreviewLayer?
     var queue:DispatchQueue!
@@ -34,48 +66,21 @@ public class GFBarcodeScanner:NSObject {
                                                      ]
     var session:AVCaptureSession?
     
-    convenience init(cameraView:UIView, delegate:AVCaptureMetadataOutputObjectsDelegate) {
+    convenience init(cameraView:UIView, delegate:AVCaptureMetaAndVideoDelegate) {
         self.init(options:GFBarcodeScannerOptions(), cameraView:cameraView, delegate:delegate)
     }
     
-    init(options:GFBarcodeScannerOptions, cameraView:UIView, delegate:AVCaptureMetadataOutputObjectsDelegate) {
+    init(options:GFBarcodeScannerOptions, cameraView:UIView, delegate:AVCaptureMetaAndVideoDelegate) {
         self.options = options
         self.cameraView = cameraView
         self.delegate = delegate
         queue = DispatchQueue(label: "GFBarcodeScannerQueue")
     }
     
-    static func createError(withMessage:String, code:Int) -> NSError {
-        let error = NSError(domain: "GFBarcodeScanner", code: code, userInfo: ["Message" : withMessage])
-        return error
-    }
-    
-    func configureCaptureSession() -> AVCaptureSession? {
-        let session = AVCaptureSession()
-        
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes:[.builtInWideAngleCamera, .builtInTelephotoCamera],
-            mediaType: AVMediaType.video,
-            position: .unspecified)
-        
-        guard let captureDevice = deviceDiscoverySession.devices.first,
-            let videoDeviceInput = try? AVCaptureDeviceInput(device: captureDevice),
-            session.canAddInput(videoDeviceInput)
-            else { return nil }
-        session.addInput(videoDeviceInput)
-        
-        let metadataOutput = AVCaptureMetadataOutput()
-        session.addOutput(metadataOutput)
-        if let delegate = self.delegate {
-            metadataOutput.setMetadataObjectsDelegate(delegate, queue: queue)
-        }
-        metadataOutput.metadataObjectTypes = objectTypes
-        
-        return session
-    }
-    
     func resizeCameraView() {
         guard let previewLayer = previewLayer else {return}
         previewLayer.frame = cameraView!.layer.bounds
+        
         switch UIApplication.shared.statusBarOrientation {
         case .portrait:
             previewLayer.connection?.videoOrientation = .portrait
@@ -91,12 +96,6 @@ public class GFBarcodeScanner:NSObject {
             break
         default:
             break
-        }
-    }
-    
-    func requestAccessCallback() {
-        DispatchQueue.main.async {
-            self.startScanning()
         }
     }
     
@@ -137,6 +136,8 @@ public class GFBarcodeScanner:NSObject {
     }
 }
 
+// MARK: - Called by AVCaptureMetaAndVideoDelegate
+
 extension GFBarcodeScanner {
     public func getBarcodeStringFromCapturedObjects(metadataObjects:[AVMetadataObject]) -> [String] {
         var codes:[String] = []
@@ -147,5 +148,77 @@ extension GFBarcodeScanner {
             }
         }
         return codes
+    }
+    
+    public func getImageFromSampleBuffer(_ sampleBuffer:CMSampleBuffer, orientation:UIInterfaceOrientation) -> UIImage? {
+        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {return nil}
+        var cImage = CIImage(cvImageBuffer: imageBuffer)
+        cImage = getOrientedImage(cImage, forOrientation: orientation)
+        return UIImage(ciImage: cImage)
+    }
+}
+
+// MARK: - Private
+
+extension GFBarcodeScanner {
+    
+    static func createError(withMessage:String, code:Int) -> NSError {
+        let error = NSError(domain: "GFBarcodeScanner", code: code, userInfo: ["Message" : withMessage])
+        return error
+    }
+    
+    private func configureCaptureSession() -> AVCaptureSession? {
+        let session = AVCaptureSession()
+        
+        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes:[.builtInWideAngleCamera, .builtInTelephotoCamera],
+                                                                      mediaType: AVMediaType.video,
+                                                                      position: .unspecified)
+        
+        guard let captureDevice = deviceDiscoverySession.devices.first,
+            let videoDeviceInput = try? AVCaptureDeviceInput(device: captureDevice),
+            session.canAddInput(videoDeviceInput)
+            else { return nil }
+        session.addInput(videoDeviceInput)
+        
+        let metadataOutput = AVCaptureMetadataOutput()
+        session.addOutput(metadataOutput)
+        if let delegate = self.delegate {
+            metadataOutput.setMetadataObjectsDelegate(delegate, queue: queue)
+            
+            let videoOutput = AVCaptureVideoDataOutput()
+            videoOutput.setSampleBufferDelegate(delegate, queue: queue)
+            
+            session.addOutput(videoOutput)
+        }
+        metadataOutput.metadataObjectTypes = objectTypes
+        
+        return session
+    }
+    
+    private func getOrientedImage(_ image:CIImage, forOrientation orientation:UIInterfaceOrientation) -> CIImage {
+        var cImage = image
+        switch orientation {
+        case .portrait:
+            cImage = cImage.oriented(forExifOrientation: 6)
+            break
+        case .portraitUpsideDown:
+            cImage = cImage.oriented(forExifOrientation: 8)
+            break
+        case .landscapeLeft:
+            cImage = cImage.oriented(forExifOrientation: 3)
+            break
+        case .landscapeRight:
+            cImage = cImage.oriented(forExifOrientation: 1)
+            break
+        default:
+            break
+        }
+        return cImage
+    }
+    
+    private func requestAccessCallback() {
+        DispatchQueue.main.async {
+            self.startScanning()
+        }
     }
 }

@@ -11,8 +11,12 @@ import GFBarcodeScanner
 
 class ScanViewController: UIViewController {
 
+    var isScanning = false
+    var barcodeVC:GFBarcodeScannerViewController?
+    
     @IBOutlet var resultLabel:UILabel!
     @IBOutlet var scanView:UIView!
+    @IBOutlet var scanButton:UIButton!
     
     @IBAction func closeButtonTap(_ sender:Any) {
         self.dismiss(animated: true, completion: nil)
@@ -20,27 +24,56 @@ class ScanViewController: UIViewController {
     
     @IBAction func scanInViewButtonTap(_ sender:Any) {
         if #available(iOS 10.0, *) {
-            let barcodeVC = GFBarcodeScannerViewController()
-            self.addChildViewController(barcodeVC)
-            scanView.addSubview(barcodeVC.view)
-            barcodeVC.didMove(toParentViewController: self)
-            barcodeVC.startScanning(options:nil, completion: { (codes, error) in
-                if codes.count > 0 {
-                    DispatchQueue.main.async {
-                        self.resultLabel.text = codes[0]
-//                        barcodeVC.stopScanning()
-//                        barcodeVC.willMove(toParentViewController: nil)
-//                        barcodeVC.removeFromParentViewController()
-//                        barcodeVC.view.removeFromSuperview()
+            if isScanning {
+                removeBarcodeVC()
+                scanButton.setTitle("Scan", for: .normal)
+                isScanning = false
+            }
+            else {
+                barcodeVC = GFBarcodeScannerViewController()
+                self.addChildViewController(barcodeVC!)
+                scanView.addSubview(barcodeVC!.view)
+                barcodeVC!.didMove(toParentViewController: self)
+                barcodeVC!.startScanning(options:nil, completion: { (codes, error) in
+                    if codes.count > 0 {
+                        DispatchQueue.main.async {
+                            self.resultLabel.text = codes[0]
+                        }
                     }
-                }
-                else if let err = error {
-                    print(err)
-                }
-            })
+                    else if let err = error {
+                        print(err)
+                    }
+                })
+                scanButton.setTitle("Stop", for: .normal)
+                isScanning = true
+            }
         } else {
             print("not supported")
         }
+    }
+    
+    @IBAction func screenshotButtonTap(_ sender:Any) {
+        guard let barcodeVC = barcodeVC else {return}
+        barcodeVC.getImage(callback: { [unowned self](image) in
+            DispatchQueue.main.async {
+                self.removeBarcodeVC()
+                guard let image = image else {return}
+                var frame = self.scanView!.frame
+                frame.origin = CGPoint(x:0, y:0)
+                let imageView = UIImageView(frame: frame)
+                imageView.image = image
+                imageView.contentMode = UIViewContentMode.scaleAspectFit
+                self.scanView.addSubview(imageView)
+            }
+        })
+    }
+    
+    func removeBarcodeVC() {
+        guard let barcodeVC = barcodeVC else {return}
+        barcodeVC.stopScanning()
+        barcodeVC.willMove(toParentViewController: nil)
+        barcodeVC.removeFromParentViewController()
+        barcodeVC.view.removeFromSuperview()
     }
     
     override func viewDidLoad() {

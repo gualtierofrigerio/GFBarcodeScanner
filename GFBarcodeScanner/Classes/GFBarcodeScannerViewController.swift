@@ -9,34 +9,6 @@ import AVFoundation
 import Foundation
 import UIKit
 
-public struct GFBarcodeScannerOptions {
-    var closeButtonText:String!
-    var closeButtonTextColor:UIColor!
-    var backgroundColor:UIColor!
-    var toolbarHeight:CGFloat!
-    var fullScreen:Bool!
-    
-    init() {
-        self.init(fullScreen: false)
-    }
-    
-    public init(fullScreen:Bool) {
-        if fullScreen {
-            closeButtonText = "Close"
-            closeButtonTextColor = UIColor.black
-            backgroundColor = UIColor.white
-            toolbarHeight = 60
-        }
-        else {
-            toolbarHeight = 0
-            backgroundColor = UIColor.white
-            closeButtonText = ""
-            closeButtonTextColor = UIColor.white
-        }
-        self.fullScreen = fullScreen
-    }
-}
-
 @available(iOS 10.0, *)
 public class GFBarcodeScannerViewController : UIViewController {
     let defaultOptions = GFBarcodeScannerOptions()
@@ -45,6 +17,8 @@ public class GFBarcodeScannerViewController : UIViewController {
     var completion:(([String], NSError?) -> Void)?
     var cameraView:UIView!
     var isFullScreen = false
+    var getImageCallback:((UIImage?) -> Void)?
+    var currentOrientation:UIInterfaceOrientation = UIInterfaceOrientation.unknown
     
     override public func viewDidAppear(_ animated: Bool) {
         if let completion = self.completion {
@@ -55,6 +29,7 @@ public class GFBarcodeScannerViewController : UIViewController {
     public override func viewWillLayoutSubviews() {
         self.cameraView?.frame = getCameraViewFrame()
         self.scanner?.resizeCameraView()
+        currentOrientation = UIApplication.shared.statusBarOrientation
     }
     
     public func startScanning(options:GFBarcodeScannerOptions?, completion:@escaping(_ results:[String], _ error:NSError?) -> Void) {
@@ -69,6 +44,10 @@ public class GFBarcodeScannerViewController : UIViewController {
     
     public func stopScanning() {
         self.scanner?.stopScanning()
+    }
+    
+    public func getImage(callback: @escaping((UIImage?) ->Void)) {
+        self.getImageCallback = callback
     }
 }
 
@@ -131,11 +110,17 @@ extension GFBarcodeScannerViewController {
  * and calls the delegate even in GFBarcodeScanner class
  */
 
-extension GFBarcodeScannerViewController:AVCaptureMetadataOutputObjectsDelegate {
+extension GFBarcodeScannerViewController:AVCaptureMetaAndVideoDelegate {
     public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let codes = self.scanner?.getBarcodeStringFromCapturedObjects(metadataObjects: metadataObjects) {
             print(codes)
             self.completion?(codes, nil)
         }
+    }
+    public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let getImageCallback = self.getImageCallback else {return}
+        let image = self.scanner?.getImageFromSampleBuffer(sampleBuffer, orientation: currentOrientation)
+        getImageCallback(image)
+        self.getImageCallback = nil
     }
 }
