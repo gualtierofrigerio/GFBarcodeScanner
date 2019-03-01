@@ -10,37 +10,7 @@ import QuartzCore
 import AVFoundation
 import UIKit
 
-protocol AVCaptureMetaAndVideoDelegate: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureMetadataOutputObjectsDelegate {
-    
-}
-
-public struct GFBarcodeScannerOptions {
-    var closeButtonText:String!
-    var closeButtonTextColor:UIColor!
-    var backgroundColor:UIColor!
-    var toolbarHeight:CGFloat!
-    var fullScreen:Bool!
-    
-    init() {
-        self.init(fullScreen: false)
-    }
-    
-    public init(fullScreen:Bool) {
-        if fullScreen {
-            closeButtonText = "Close"
-            closeButtonTextColor = UIColor.black
-            backgroundColor = UIColor.white
-            toolbarHeight = 60
-        }
-        else {
-            toolbarHeight = 0
-            backgroundColor = UIColor.white
-            closeButtonText = ""
-            closeButtonTextColor = UIColor.white
-        }
-        self.fullScreen = fullScreen
-    }
-}
+protocol AVCaptureMetaAndVideoDelegate: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureMetadataOutputObjectsDelegate {}
 
 @available(iOS 10.0, *)
 public class GFBarcodeScanner:NSObject {
