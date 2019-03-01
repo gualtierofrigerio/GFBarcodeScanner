@@ -3,6 +3,7 @@
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+You can find my article describing the project at this link http://www.gfrigerio.com/barcode-scanner/
 
 ## Requirements
 
