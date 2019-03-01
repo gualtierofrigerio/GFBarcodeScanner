@@ -99,7 +99,7 @@ public class GFBarcodeScanner:NSObject {
         queue.async {
             session.startRunning()
         }
-    }
+}
     
     public func stopScanning() {
         self.session?.stopRunning()

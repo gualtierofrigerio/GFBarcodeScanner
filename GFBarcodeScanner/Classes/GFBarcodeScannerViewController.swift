@@ -84,6 +84,7 @@ extension GFBarcodeScannerViewController {
     @objc private func closeButtonTap(_ sender:Any) {
         self.scanner?.stopScanning()
         self.completion?([], GFBarcodeScanner.createError(withMessage: "User closed the capture view", code: 0))
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func configureView() {
@@ -99,10 +100,11 @@ extension GFBarcodeScannerViewController {
             frame.size.height = opt.toolbarHeight
             let toolbarView = UIView.init(frame: frame)
             toolbarView.backgroundColor = opt.backgroundColor
-            
-            let closeButton = UIButton.init(frame: toolbarView.frame)
+            frame.origin = CGPoint(x: 20.0, y: 20.0)
+            let closeButton = UIButton.init(frame: frame)
             closeButton.addTarget(self, action: #selector(self.closeButtonTap(_:)), for: .touchUpInside)
             closeButton.setTitle(opt.closeButtonText, for: .normal)
+            closeButton.contentHorizontalAlignment = .left
             closeButton.setTitleColor(opt.closeButtonTextColor, for: .normal)
             
             toolbarView.addSubview(closeButton)

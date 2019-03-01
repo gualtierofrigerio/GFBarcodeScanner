@@ -13,6 +13,7 @@ class ScanViewController: UIViewController {
 
     var isScanning = false
     var barcodeVC:GFBarcodeScannerViewController?
+    var screenshotImageView:UIImageView?
     
     @IBOutlet var resultLabel:UILabel!
     @IBOutlet var scanView:UIView!
@@ -23,6 +24,9 @@ class ScanViewController: UIViewController {
     }
     
     @IBAction func scanInViewButtonTap(_ sender:Any) {
+        if let imageView = screenshotImageView {
+            imageView.removeFromSuperview()
+        }
         if #available(iOS 10.0, *) {
             if isScanning {
                 removeBarcodeVC()
@@ -60,10 +64,10 @@ class ScanViewController: UIViewController {
                 guard let image = image else {return}
                 var frame = self.scanView!.frame
                 frame.origin = CGPoint(x:0, y:0)
-                let imageView = UIImageView(frame: frame)
-                imageView.image = image
-                imageView.contentMode = UIViewContentMode.scaleAspectFit
-                self.scanView.addSubview(imageView)
+                self.screenshotImageView = UIImageView(frame: frame)
+                self.screenshotImageView!.image = image
+                self.screenshotImageView!.contentMode = UIViewContentMode.scaleAspectFit
+                self.scanView.addSubview(self.screenshotImageView!)
             }
         })
     }
@@ -74,6 +78,8 @@ class ScanViewController: UIViewController {
         barcodeVC.willMove(toParentViewController: nil)
         barcodeVC.removeFromParentViewController()
         barcodeVC.view.removeFromSuperview()
+        isScanning = false
+        scanButton.setTitle("Scan", for: .normal)
     }
     
     override func viewDidLoad() {
