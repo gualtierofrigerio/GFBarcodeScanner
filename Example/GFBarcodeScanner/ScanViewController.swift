@@ -18,6 +18,7 @@ class ScanViewController: UIViewController {
     @IBOutlet var resultLabel:UILabel!
     @IBOutlet var scanView:UIView!
     @IBOutlet var scanButton:UIButton!
+    @IBOutlet var toggleTorchButton:UIButton!
     
     @IBAction func closeButtonTap(_ sender:Any) {
         self.dismiss(animated: true, completion: nil)
@@ -70,6 +71,11 @@ class ScanViewController: UIViewController {
                 self.scanView.addSubview(self.screenshotImageView!)
             }
         })
+    }
+    
+    @IBAction func toggleTorchButtonTap(_ sender:Any) {
+        guard let barcodeVC = barcodeVC else {return}
+        barcodeVC.toggleTorch()
     }
     
     func removeBarcodeVC() {

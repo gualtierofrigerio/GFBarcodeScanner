@@ -9,6 +9,12 @@ import AVFoundation
 import Foundation
 import UIKit
 
+public enum GFTorchStatus {
+    case on
+    case off
+    case unavailable
+}
+
 public struct GFBarcodeScannerOptions {
     var closeButtonText:String!
     var closeButtonTextColor:UIColor!
@@ -47,6 +53,7 @@ public class GFBarcodeScannerViewController : UIViewController {
     var isFullScreen = false
     var getImageCallback:((UIImage?) -> Void)?
     var currentOrientation:UIInterfaceOrientation = UIInterfaceOrientation.unknown
+    var torchStatus:GFTorchStatus = .off
     
     override public func viewDidAppear(_ animated: Bool) {
         if let completion = self.completion {
@@ -76,6 +83,16 @@ public class GFBarcodeScannerViewController : UIViewController {
     
     public func getImage(callback: @escaping((UIImage?) ->Void)) {
         self.getImageCallback = callback
+    }
+    
+    public func isTorchAvailable() -> Bool {
+        return checkTorchAvailability()
+    }
+    
+    @discardableResult public func toggleTorch() -> GFTorchStatus {
+        let on = torchStatus != .on ? true : false
+        torchStatus = changeTorchStatus(on:on)
+        return torchStatus
     }
 }
 
@@ -129,6 +146,36 @@ extension GFBarcodeScannerViewController {
             frame.size.height = frame.size.height - opt.toolbarHeight
         }
         return frame
+    }
+    
+    private func checkTorchAvailability() -> Bool {
+        guard let device = AVCaptureDevice.default(for: .video) else { return false }
+        if device.hasTorch {
+            return true
+        }
+        return false
+    }
+    
+    private func changeTorchStatus(on:Bool) -> GFTorchStatus {
+        if checkTorchAvailability() == false {
+            return .unavailable
+        }
+        guard let device = AVCaptureDevice.default(for: .video) else { return .unavailable }
+        var status = GFTorchStatus.unavailable
+        do {
+            try device.lockForConfiguration()
+            if on == true {
+                device.torchMode = .on
+                status = .on
+            } else {
+                device.torchMode = .off
+                status = .off
+            }
+            device.unlockForConfiguration()
+        } catch {
+            print("Error while trying to access the torch")
+        }
+        return status
     }
 }
 

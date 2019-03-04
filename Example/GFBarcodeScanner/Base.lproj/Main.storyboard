@@ -86,13 +86,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzB-vT-wS1">
-                                <rect key="frame" x="29" y="28" width="39" height="30"/>
-                                <state key="normal" title="Close"/>
-                                <connections>
-                                    <action selector="closeButtonTap:" destination="dEt-bc-Fo2" eventType="touchUpInside" id="CiV-pf-C9Q"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aL5-A8-dG4">
                                 <rect key="frame" x="319" y="28" width="35" height="30"/>
                                 <state key="normal" title="Scan"/>
@@ -101,27 +94,45 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lo7-at-mYF">
-                                <rect key="frame" x="150" y="28" width="79" height="30"/>
+                                <rect key="frame" x="88" y="28" width="79" height="30"/>
                                 <state key="normal" title="Screenshot"/>
                                 <connections>
                                     <action selector="screenshotButtonTap:" destination="dEt-bc-Fo2" eventType="touchUpInside" id="a5G-zq-OVY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bce-0R-pQN">
+                                <rect key="frame" x="267" y="28" width="39" height="30"/>
+                                <state key="normal" title="Torch"/>
+                                <connections>
+                                    <action selector="toggleTorchButtonTap:" destination="dEt-bc-Fo2" eventType="touchUpInside" id="Knj-6V-JMh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzB-vT-wS1">
+                                <rect key="frame" x="0.0" y="28" width="98" height="30"/>
+                                <state key="normal" title="Close"/>
+                                <connections>
+                                    <action selector="closeButtonTap:" destination="dEt-bc-Fo2" eventType="touchUpInside" id="CiV-pf-C9Q"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lo7-at-mYF" firstAttribute="centerX" secondItem="XoL-iu-Tyz" secondAttribute="centerX" id="0AB-uE-1h5"/>
+                            <constraint firstAttribute="trailing" secondItem="aL5-A8-dG4" secondAttribute="trailing" constant="21" id="6n9-BQ-XMw"/>
+                            <constraint firstItem="lo7-at-mYF" firstAttribute="leading" secondItem="jzB-vT-wS1" secondAttribute="trailing" constant="-10" id="8sn-BV-hgJ"/>
+                            <constraint firstItem="Bce-0R-pQN" firstAttribute="leading" secondItem="lo7-at-mYF" secondAttribute="trailing" constant="40" id="CNp-rY-Xi2"/>
+                            <constraint firstItem="Bce-0R-pQN" firstAttribute="top" secondItem="0tQ-iP-JrQ" secondAttribute="bottom" constant="8" id="KbT-zP-HKd"/>
                             <constraint firstItem="lo7-at-mYF" firstAttribute="top" secondItem="0tQ-iP-JrQ" secondAttribute="bottom" constant="8" id="Lqs-J7-7Tu"/>
                             <constraint firstItem="jzB-vT-wS1" firstAttribute="leading" secondItem="XoL-iu-Tyz" secondAttribute="leading" constant="29" id="hKl-v5-jqO"/>
                             <constraint firstItem="aL5-A8-dG4" firstAttribute="top" secondItem="0tQ-iP-JrQ" secondAttribute="bottom" constant="8" id="od5-5s-8VL"/>
                             <constraint firstItem="jzB-vT-wS1" firstAttribute="top" secondItem="0tQ-iP-JrQ" secondAttribute="bottom" constant="8" id="r7x-cM-C0T"/>
-                            <constraint firstAttribute="trailing" secondItem="aL5-A8-dG4" secondAttribute="trailing" constant="21" id="rav-4f-eUW"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="resultLabel" destination="apZ-Zw-Yfn" id="QJc-iB-w0n"/>
                         <outlet property="scanButton" destination="aL5-A8-dG4" id="Smr-p1-Gbf"/>
                         <outlet property="scanView" destination="BVK-Lj-aVB" id="Dvz-kg-Z1d"/>
+                        <outlet property="toggleTorchButton" destination="Bce-0R-pQN" id="CNU-uK-TRb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5SB-zw-VYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
