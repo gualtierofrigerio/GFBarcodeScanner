@@ -11,6 +11,7 @@
 		07DF8D2E578C2CA1F39FB772BF8A7BA2 /* Pods-GFBarcodeScanner_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F20A1233E2A73B327950A4B962F3DE9A /* Pods-GFBarcodeScanner_Tests-dummy.m */; };
 		2522ADD921393E1800D72F56 /* GFBarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2522ADD821393E1800D72F56 /* GFBarcodeScanner.swift */; };
 		2522ADDB213960CA00D72F56 /* GFBarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2522ADDA213960CA00D72F56 /* GFBarcodeScannerViewController.swift */; };
+		25AB8223222E713B00A1A8B4 /* GFGeometryUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AB8222222E713B00A1A8B4 /* GFGeometryUtility.swift */; };
 		38C36FDB7B580D614614093724365D6F /* Pods-GFBarcodeScanner_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 945B5782E32432720076E27518E19A4C /* Pods-GFBarcodeScanner_Example-dummy.m */; };
 		4A23A7686AE8842D8EB6A0A15497294D /* GFBarcodeScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5FB1FCC84544A97238880935F6B149 /* GFBarcodeScanner-dummy.m */; };
 		80F143FA052E16AF7CF34E98E9F8D038 /* Pods-GFBarcodeScanner_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1309C1DD1A461D7BE86CA3C09CA60595 /* Pods-GFBarcodeScanner_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,6 +46,7 @@
 		15968BF3E445B5942EAB18314260F847 /* Pods-GFBarcodeScanner_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GFBarcodeScanner_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		2522ADD821393E1800D72F56 /* GFBarcodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GFBarcodeScanner.swift; path = GFBarcodeScanner/Classes/GFBarcodeScanner.swift; sourceTree = "<group>"; };
 		2522ADDA213960CA00D72F56 /* GFBarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GFBarcodeScannerViewController.swift; path = GFBarcodeScanner/Classes/GFBarcodeScannerViewController.swift; sourceTree = "<group>"; };
+		25AB8222222E713B00A1A8B4 /* GFGeometryUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GFGeometryUtility.swift; path = GFBarcodeScanner/Classes/GFGeometryUtility.swift; sourceTree = "<group>"; };
 		2911290F84D2187261B9886A160ECD1E /* Pods-GFBarcodeScanner_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GFBarcodeScanner_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2B9C8FDCE11D1D55EF7D9C1A03A06ADA /* Pods-GFBarcodeScanner_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GFBarcodeScanner_Example.modulemap"; sourceTree = "<group>"; };
 		39C1B6068698488A551F7BA3FD48B8B7 /* Pods_GFBarcodeScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GFBarcodeScanner_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 				ABC827973B11F1641FFC6D1566F8E884 /* Support Files */,
 				2522ADD821393E1800D72F56 /* GFBarcodeScanner.swift */,
 				2522ADDA213960CA00D72F56 /* GFBarcodeScannerViewController.swift */,
+				25AB8222222E713B00A1A8B4 /* GFGeometryUtility.swift */,
 			);
 			name = GFBarcodeScanner;
 			path = ../..;
@@ -370,6 +373,7 @@
 				2522ADD921393E1800D72F56 /* GFBarcodeScanner.swift in Sources */,
 				2522ADDB213960CA00D72F56 /* GFBarcodeScannerViewController.swift in Sources */,
 				4A23A7686AE8842D8EB6A0A15497294D /* GFBarcodeScanner-dummy.m in Sources */,
+				25AB8223222E713B00A1A8B4 /* GFGeometryUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,6 +19,7 @@ public class GFBarcodeScanner:NSObject {
     var delegate:AVCaptureMetaAndVideoDelegate?
     var cameraView:UIView?
     var previewLayer:AVCaptureVideoPreviewLayer?
+    var rectanglesLayer:CAShapeLayer?
     var queue:DispatchQueue!
     let objectTypes:[AVMetadataObject.ObjectType] = [AVMetadataObject.ObjectType.aztec,
                                                      AVMetadataObject.ObjectType.code39,
@@ -110,11 +111,25 @@ public class GFBarcodeScanner:NSObject {
 
 extension GFBarcodeScanner {
     public func getBarcodeStringFromCapturedObjects(metadataObjects:[AVMetadataObject]) -> [String] {
+        var rectangles = [CGRect]()
         var codes:[String] = []
         for metadata in metadataObjects {
             if let object = metadata as? AVMetadataMachineReadableCodeObject,
                 let stringValue = object.stringValue {
                 codes.append(stringValue)
+                if options.drawRectangles {
+                    rectangles.append(object.bounds)
+                }
+            }
+        }
+        if options.drawRectangles, let previewLayer = previewLayer {
+            if let layer = rectanglesLayer {
+                layer.removeFromSuperlayer()
+            }
+            rectanglesLayer = GFGeometryUtility.getLayer(withRectangles: rectangles, frameSize: previewLayer.frame, strokeColor: UIColor.green.cgColor)
+            DispatchQueue.main.async {
+                self.previewLayer!.addSublayer(self.rectanglesLayer!)
+                self.previewLayer?.setNeedsDisplay()
             }
         }
         return codes
@@ -191,4 +206,21 @@ extension GFBarcodeScanner {
             self.startScanning()
         }
     }
+}
+
+// MARK: - Drawing rectangles
+
+extension GFBarcodeScanner {
+    
+    private func configureRectanglesLayer() -> CAShapeLayer? {
+        guard let previewLayer = previewLayer else {return nil}
+        if let layer = rectanglesLayer {
+            layer.removeFromSuperlayer()
+        }
+        rectanglesLayer = CAShapeLayer()
+        rectanglesLayer!.frame = previewLayer.frame
+        return rectanglesLayer!
+    }
+    
+    
 }

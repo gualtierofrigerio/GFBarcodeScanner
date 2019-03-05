@@ -21,6 +21,7 @@ public struct GFBarcodeScannerOptions {
     var backgroundColor:UIColor!
     var toolbarHeight:CGFloat!
     var fullScreen:Bool!
+    var drawRectangles:Bool!
     
     init() {
         self.init(fullScreen: false)
@@ -32,12 +33,14 @@ public struct GFBarcodeScannerOptions {
             closeButtonTextColor = UIColor.black
             backgroundColor = UIColor.white
             toolbarHeight = 60
+            drawRectangles = false
         }
         else {
             toolbarHeight = 0
             backgroundColor = UIColor.white
             closeButtonText = ""
             closeButtonTextColor = UIColor.white
+            drawRectangles = true
         }
         self.fullScreen = fullScreen
     }
