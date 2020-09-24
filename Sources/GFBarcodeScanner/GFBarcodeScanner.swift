@@ -105,47 +105,8 @@ public class GFBarcodeScanner:NSObject {
     public func stopScanning() {
         self.session?.stopRunning()
     }
-}
-
-// MARK: - Called by AVCaptureMetaAndVideoDelegate
-
-extension GFBarcodeScanner {
-    public func getBarcodeStringFromCapturedObjects(metadataObjects:[AVMetadataObject]) -> [String] {
-        var rectangles = [CGRect]()
-        var codes:[String] = []
-        for metadata in metadataObjects {
-            if let object = metadata as? AVMetadataMachineReadableCodeObject,
-                let stringValue = object.stringValue {
-                codes.append(stringValue)
-                if options.drawRectangles {
-                    rectangles.append(object.bounds)
-                }
-            }
-        }
-        if options.drawRectangles, let previewLayer = previewLayer {
-            if let layer = rectanglesLayer {
-                layer.removeFromSuperlayer()
-            }
-            rectanglesLayer = GFGeometryUtility.getLayer(withRectangles: rectangles, frameSize: previewLayer.frame, strokeColor: UIColor.green.cgColor)
-            DispatchQueue.main.async {
-                self.previewLayer!.addSublayer(self.rectanglesLayer!)
-                self.previewLayer?.setNeedsDisplay()
-            }
-        }
-        return codes
-    }
     
-    public func getImageFromSampleBuffer(_ sampleBuffer:CMSampleBuffer, orientation:UIInterfaceOrientation) -> UIImage? {
-        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {return nil}
-        var cImage = CIImage(cvImageBuffer: imageBuffer)
-        cImage = getOrientedImage(cImage, forOrientation: orientation)
-        return UIImage(ciImage: cImage)
-    }
-}
-
-// MARK: - Private
-
-extension GFBarcodeScanner {
+    // MARK: - Private
     
     static func createError(withMessage:String, code:Int) -> NSError {
         let error = NSError(domain: "GFBarcodeScanner", code: code, userInfo: ["Message" : withMessage])
@@ -206,11 +167,8 @@ extension GFBarcodeScanner {
             self.startScanning()
         }
     }
-}
-
-// MARK: - Drawing rectangles
-
-extension GFBarcodeScanner {
+    
+    // MARK: - Drawing rectangles
     
     private func configureRectanglesLayer() -> CAShapeLayer? {
         guard let previewLayer = previewLayer else {return nil}
@@ -221,6 +179,41 @@ extension GFBarcodeScanner {
         rectanglesLayer!.frame = previewLayer.frame
         return rectanglesLayer!
     }
+}
+
+// MARK: - Called by AVCaptureMetaAndVideoDelegate
+
+@available(iOS 10.0, *)
+extension GFBarcodeScanner {
+    public func getBarcodeStringFromCapturedObjects(metadataObjects:[AVMetadataObject]) -> [String] {
+        var rectangles = [CGRect]()
+        var codes:[String] = []
+        for metadata in metadataObjects {
+            if let object = metadata as? AVMetadataMachineReadableCodeObject,
+                let stringValue = object.stringValue {
+                codes.append(stringValue)
+                if options.drawRectangles {
+                    rectangles.append(object.bounds)
+                }
+            }
+        }
+        if options.drawRectangles, let previewLayer = previewLayer {
+            if let layer = rectanglesLayer {
+                layer.removeFromSuperlayer()
+            }
+            rectanglesLayer = GFGeometryUtility.getLayer(withRectangles: rectangles, frameSize: previewLayer.frame, strokeColor: UIColor.green.cgColor)
+            DispatchQueue.main.async {
+                self.previewLayer!.addSublayer(self.rectanglesLayer!)
+                self.previewLayer?.setNeedsDisplay()
+            }
+        }
+        return codes
+    }
     
-    
+    public func getImageFromSampleBuffer(_ sampleBuffer:CMSampleBuffer, orientation:UIInterfaceOrientation) -> UIImage? {
+        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {return nil}
+        var cImage = CIImage(cvImageBuffer: imageBuffer)
+        cImage = getOrientedImage(cImage, forOrientation: orientation)
+        return UIImage(ciImage: cImage)
+    }
 }
