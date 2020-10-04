@@ -9,19 +9,25 @@ import AVFoundation
 import Foundation
 import UIKit
 
+/// Enum describing the status of the iPhone torch
 public enum GFTorchStatus {
     case on
     case off
     case unavailable
 }
 
+/// Struct containing options for the GFBarcodeScannerViewController
+/// There is a initializer with a fullscreen parameter
+/// If fullscren is true there is a default Close button
+/// otherwise we assume the BarcodeViewController will be embedded
+/// into a containing VC providing the close button and the toolbar
 public struct GFBarcodeScannerOptions {
-    var closeButtonText:String!
-    var closeButtonTextColor:UIColor!
-    var backgroundColor:UIColor!
-    var toolbarHeight:CGFloat!
-    var fullScreen:Bool!
-    var drawRectangles:Bool!
+    var closeButtonText:String = "" // Text for the close button
+    var closeButtonTextColor:UIColor = UIColor.black // Text color for close button
+    var backgroundColor:UIColor = UIColor.white // Toolbar background color
+    var toolbarHeight:CGFloat = 60.0 // Height of the toolbar
+    var fullScreen:Bool = false // fullscreen mode
+    var drawRectangles:Bool = false // draw a rectangle when a barcode is detected
     
     init() {
         self.init(fullScreen: false)
@@ -32,7 +38,7 @@ public struct GFBarcodeScannerOptions {
             closeButtonText = "Close"
             closeButtonTextColor = UIColor.black
             backgroundColor = UIColor.white
-            toolbarHeight = 60
+            toolbarHeight = 60.0
             drawRectangles = false
         }
         else {
@@ -47,6 +53,10 @@ public struct GFBarcodeScannerOptions {
 }
 
 @available(iOS 10.0, *)
+/// GFBarcodeScannerViewcontroller
+/// A view controller responsible for showing the camera and detect barcodes
+/// The VC can be configure via a GFBarcodeScannerOptions struct
+/// is nothing is provided a default one is used
 public class GFBarcodeScannerViewController : UIViewController {
     let defaultOptions = GFBarcodeScannerOptions()
     public var options:GFBarcodeScannerOptions?
@@ -70,7 +80,12 @@ public class GFBarcodeScannerViewController : UIViewController {
         currentOrientation = UIApplication.shared.statusBarOrientation
     }
     
-    public func startScanning(options:GFBarcodeScannerOptions?, completion:@escaping(_ results:[String], _ error:NSError?) -> Void) {
+    /// Start teh scanning process
+    /// - Parameters:
+    ///   - options: an optional GFBarcodeScannerOptions struct
+    ///   - completion: completion handler called when a barcode is detected
+    public func startScanning(options:GFBarcodeScannerOptions?,
+                              completion:@escaping(_ results:[String], _ error:NSError?) -> Void) {
         self.completion = completion
         self.options = options
         if cameraView == nil {
@@ -80,6 +95,7 @@ public class GFBarcodeScannerViewController : UIViewController {
         scanner?.startScanning()
     }
     
+    /// Stop the scaning process
     public func stopScanning() {
         self.scanner?.stopScanning()
     }
