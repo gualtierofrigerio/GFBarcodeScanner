@@ -31,7 +31,7 @@ Barcode reader written in Swift 4 with its view controller.
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files = 'GFBarcodeScanner/Classes/**/*'
+  s.source_files = 'Sources/**/*'
   
   # s.resource_bundles = {
   #   'GFBarcodeScanner' => ['GFBarcodeScanner/Assets/*.png']
