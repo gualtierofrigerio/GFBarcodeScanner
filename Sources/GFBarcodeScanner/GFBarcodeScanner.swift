@@ -13,6 +13,8 @@ import UIKit
 protocol AVCaptureMetaAndVideoDelegate: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureMetadataOutputObjectsDelegate {}
 
 @available(iOS 10.0, *)
+/// A class used to perform barcode scanning
+/// the scanning is performed via AVCaptureDevice
 public class GFBarcodeScanner:NSObject {
     
     var options:GFBarcodeScannerOptions!
@@ -48,9 +50,12 @@ public class GFBarcodeScanner:NSObject {
         queue = DispatchQueue(label: "GFBarcodeScannerQueue")
     }
     
+    /// Resizes the previewLayer view and updates the videoOrientation
+    /// based on the current orientation of the device
     func resizeCameraView() {
-        guard let previewLayer = previewLayer else {return}
-        previewLayer.frame = cameraView!.layer.bounds
+        guard let previewLayer = previewLayer,
+              let cameraView = cameraView else {return}
+        previewLayer.frame = cameraView.layer.bounds
         
         switch UIApplication.shared.statusBarOrientation {
         case .portrait:
@@ -70,6 +75,8 @@ public class GFBarcodeScanner:NSObject {
         }
     }
     
+    /// Begins a scanning session
+    /// And asks for the camera permission if it wasn't already granted
     public func startScanning() {
         let authorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
         if authorizationStatus == .notDetermined {
@@ -93,26 +100,36 @@ public class GFBarcodeScanner:NSObject {
             return
         }
         self.session = session
-        previewLayer = AVCaptureVideoPreviewLayer(session: session)
-        previewLayer!.frame = cameraView.layer.bounds
-        previewLayer!.videoGravity = .resizeAspectFill
-        cameraView.layer.addSublayer(previewLayer!)
+        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        previewLayer.frame = cameraView.layer.bounds
+        previewLayer.videoGravity = .resizeAspectFill
+        cameraView.layer.addSublayer(previewLayer)
+        self.previewLayer = previewLayer
         queue.async {
             session.startRunning()
         }
 }
     
+    /// Ends the scanning session
     public func stopScanning() {
         self.session?.stopRunning()
     }
     
     // MARK: - Private
     
+    /// Creates an NSError with a string and a code
+    /// - Parameters:
+    ///   - withMessage: the String with the error message
+    ///   - code: the error code
+    /// - Returns: An NSError
     static func createError(withMessage:String, code:Int) -> NSError {
         let error = NSError(domain: "GFBarcodeScanner", code: code, userInfo: ["Message" : withMessage])
         return error
     }
     
+    /// Configures an AVCaptureSession
+    /// setting its delegate and the objectTypes
+    /// - Returns: an optional AVCaptureSession
     private func configureCaptureSession() -> AVCaptureSession? {
         let session = AVCaptureSession()
         
@@ -141,6 +158,11 @@ public class GFBarcodeScanner:NSObject {
         return session
     }
     
+    /// Returnes a CIImage rotated based on the given orientation
+    /// - Parameters:
+    ///   - image: The image to rotate
+    ///   - orientation: The desired orientation
+    /// - Returns: The rotated image
     private func getOrientedImage(_ image:CIImage, forOrientation orientation:UIInterfaceOrientation) -> CIImage {
         var cImage = image
         switch orientation {
@@ -162,6 +184,7 @@ public class GFBarcodeScanner:NSObject {
         return cImage
     }
     
+    /// Callback for AVCaptureDevice.requestAccess
     private func requestAccessCallback() {
         DispatchQueue.main.async {
             self.startScanning()
@@ -170,14 +193,17 @@ public class GFBarcodeScanner:NSObject {
     
     // MARK: - Drawing rectangles
     
+    /// Configure a CAShapeLayer with the same size as the previewLayer
+    /// - Returns: A CAShapeLayer
     private func configureRectanglesLayer() -> CAShapeLayer? {
         guard let previewLayer = previewLayer else {return nil}
         if let layer = rectanglesLayer {
             layer.removeFromSuperlayer()
         }
-        rectanglesLayer = CAShapeLayer()
-        rectanglesLayer!.frame = previewLayer.frame
-        return rectanglesLayer!
+        let rectanglesLayer = CAShapeLayer()
+        rectanglesLayer.frame = previewLayer.frame
+        self.rectanglesLayer = rectanglesLayer
+        return rectanglesLayer
     }
 }
 
@@ -185,6 +211,9 @@ public class GFBarcodeScanner:NSObject {
 
 @available(iOS 10.0, *)
 extension GFBarcodeScanner {
+    /// Returns an array of barcoded from an array of AVMetadataObject
+    /// - Parameter metadataObjects: The array of AVMetadataObject containing the codes
+    /// - Returns: A String array of barcodes
     public func getBarcodeStringFromCapturedObjects(metadataObjects:[AVMetadataObject]) -> [String] {
         var rectangles = [CGRect]()
         var codes:[String] = []
@@ -203,13 +232,21 @@ extension GFBarcodeScanner {
             }
             rectanglesLayer = GFGeometryUtility.getLayer(withRectangles: rectangles, frameSize: previewLayer.frame, strokeColor: UIColor.green.cgColor)
             DispatchQueue.main.async {
-                self.previewLayer!.addSublayer(self.rectanglesLayer!)
-                self.previewLayer?.setNeedsDisplay()
+                if let previewLayer = self.previewLayer,
+                   let rectanglesLayer = self.rectanglesLayer {
+                    previewLayer.addSublayer(rectanglesLayer)
+                    previewLayer.setNeedsDisplay()
+                }
             }
         }
         return codes
     }
     
+    /// Tries to get a UIImage from a CMSampleBuffer with an orientation
+    /// - Parameters:
+    ///   - sampleBuffer: The CMSampleBuffer containing the image
+    ///   - orientation: The desired orientation
+    /// - Returns: An optional UIImage
     public func getImageFromSampleBuffer(_ sampleBuffer:CMSampleBuffer, orientation:UIInterfaceOrientation) -> UIImage? {
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {return nil}
         var cImage = CIImage(cvImageBuffer: imageBuffer)
