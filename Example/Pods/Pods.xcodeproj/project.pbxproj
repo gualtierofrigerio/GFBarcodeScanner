@@ -13,9 +13,12 @@
 		2591A238251CFBF600D81B82 /* GFGeometryUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2591A235251CFBF600D81B82 /* GFGeometryUtility.swift */; };
 		2591A239251CFBF600D81B82 /* GFBarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2591A236251CFBF600D81B82 /* GFBarcodeScanner.swift */; };
 		38C36FDB7B580D614614093724365D6F /* Pods-GFBarcodeScanner_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 945B5782E32432720076E27518E19A4C /* Pods-GFBarcodeScanner_Example-dummy.m */; };
+		3DEBD87EB5634D31A25BCFBE /* Pods_Pods_GFBarcodeScanner_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28B873927BDE73F3657DCFE /* Pods_Pods_GFBarcodeScanner_Tests.framework */; };
+		40CEF4037B78CAD53A9E3CE7 /* Pods_Pods_GFBarcodeScanner_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1919888FC6EA42CB0662F61 /* Pods_Pods_GFBarcodeScanner_Example.framework */; };
 		4A23A7686AE8842D8EB6A0A15497294D /* GFBarcodeScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DF5FB1FCC84544A97238880935F6B149 /* GFBarcodeScanner-dummy.m */; };
 		80F143FA052E16AF7CF34E98E9F8D038 /* Pods-GFBarcodeScanner_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1309C1DD1A461D7BE86CA3C09CA60595 /* Pods-GFBarcodeScanner_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9309C35E9A1E50C23264B5C426A91C5A /* GFBarcodeScanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F29C058D4BBA2BCD9BF95691CE7D6BA /* GFBarcodeScanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1C941E6934E7E75FEE42EFF /* Pods_GFBarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BC47D00E67DDFC590283E8 /* Pods_GFBarcodeScanner.framework */; };
 		A2EF96CF38C729CBAE2CFB2EC44C095B /* Pods-GFBarcodeScanner_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 05D4434F53634E83A4581DCD8023125B /* Pods-GFBarcodeScanner_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3E73150A1F2A82912068C40CB22CAE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 		C80675B6FB1297F536DBCD7EB3E31017 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
@@ -44,12 +47,14 @@
 		120D5ADEBDC5AC23EAF8152A5E067222 /* GFBarcodeScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GFBarcodeScanner.modulemap; sourceTree = "<group>"; };
 		1309C1DD1A461D7BE86CA3C09CA60595 /* Pods-GFBarcodeScanner_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GFBarcodeScanner_Example-umbrella.h"; sourceTree = "<group>"; };
 		15968BF3E445B5942EAB18314260F847 /* Pods-GFBarcodeScanner_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GFBarcodeScanner_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		2563F9EABC9F3119857B1C55 /* Pods-Pods-GFBarcodeScanner_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pods-GFBarcodeScanner_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Pods-GFBarcodeScanner_Tests/Pods-Pods-GFBarcodeScanner_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2591A234251CFBF600D81B82 /* GFBarcodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFBarcodeScannerViewController.swift; path = Sources/GFBarcodeScanner/GFBarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		2591A235251CFBF600D81B82 /* GFGeometryUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFGeometryUtility.swift; path = Sources/GFBarcodeScanner/GFGeometryUtility.swift; sourceTree = "<group>"; };
 		2591A236251CFBF600D81B82 /* GFBarcodeScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GFBarcodeScanner.swift; path = Sources/GFBarcodeScanner/GFBarcodeScanner.swift; sourceTree = "<group>"; };
 		2911290F84D2187261B9886A160ECD1E /* Pods-GFBarcodeScanner_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GFBarcodeScanner_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2B9C8FDCE11D1D55EF7D9C1A03A06ADA /* Pods-GFBarcodeScanner_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GFBarcodeScanner_Example.modulemap"; sourceTree = "<group>"; };
 		39C1B6068698488A551F7BA3FD48B8B7 /* Pods_GFBarcodeScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GFBarcodeScanner_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BE3D97DC1704AAAAC4F80AD /* Pods-Pods-GFBarcodeScanner_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pods-GFBarcodeScanner_Example.debug.xcconfig"; path = "Target Support Files/Pods-Pods-GFBarcodeScanner_Example/Pods-Pods-GFBarcodeScanner_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		40834FFA669C0802F7FDC9B92AA48E05 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		43A877740E26075BDB94DF565BC04658 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4554E58B5101A46A0451CF9D509F00B0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -66,15 +71,22 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		945B5782E32432720076E27518E19A4C /* Pods-GFBarcodeScanner_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GFBarcodeScanner_Example-dummy.m"; sourceTree = "<group>"; };
 		9731B280CDB5B2A85DA96FC33126662A /* GFBarcodeScanner.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = GFBarcodeScanner.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		99881241D0B03E203A7C106C /* Pods-GFBarcodeScanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFBarcodeScanner.debug.xcconfig"; path = "Target Support Files/Pods-GFBarcodeScanner/Pods-GFBarcodeScanner.debug.xcconfig"; sourceTree = "<group>"; };
 		A63A4E14AE53A8C5EE70F3457EE2B48A /* GFBarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GFBarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4F44A34E381C533DD0CC37B9A5C9276 /* Pods-GFBarcodeScanner_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GFBarcodeScanner_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		BD50EC8447E307F327DA8339A004FB32 /* Pods-GFBarcodeScanner_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GFBarcodeScanner_Tests.modulemap"; sourceTree = "<group>"; };
 		BDEA2355EAD47B69C5742C80857C447D /* Pods-GFBarcodeScanner_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GFBarcodeScanner_Tests-resources.sh"; sourceTree = "<group>"; };
+		C1BC47D00E67DDFC590283E8 /* Pods_GFBarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GFBarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1362080B19B9AEE3892008B /* Pods-GFBarcodeScanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GFBarcodeScanner.release.xcconfig"; path = "Target Support Files/Pods-GFBarcodeScanner/Pods-GFBarcodeScanner.release.xcconfig"; sourceTree = "<group>"; };
+		D1919888FC6EA42CB0662F61 /* Pods_Pods_GFBarcodeScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pods_GFBarcodeScanner_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC0106F1E0CEBEC46ED586A5 /* Pods-Pods-GFBarcodeScanner_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pods-GFBarcodeScanner_Example.release.xcconfig"; path = "Target Support Files/Pods-Pods-GFBarcodeScanner_Example/Pods-Pods-GFBarcodeScanner_Example.release.xcconfig"; sourceTree = "<group>"; };
 		DD0F5BFE60DE5BF20331EAEB9C0D0AA7 /* Pods_GFBarcodeScanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GFBarcodeScanner_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF5FB1FCC84544A97238880935F6B149 /* GFBarcodeScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GFBarcodeScanner-dummy.m"; sourceTree = "<group>"; };
+		E0D1846DD452EF9C3426992E /* Pods-Pods-GFBarcodeScanner_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pods-GFBarcodeScanner_Tests.release.xcconfig"; path = "Target Support Files/Pods-Pods-GFBarcodeScanner_Tests/Pods-Pods-GFBarcodeScanner_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E26657BE086A3CC625757D486AA704E9 /* Pods-GFBarcodeScanner_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GFBarcodeScanner_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		ECDA2FC52A51A701369376ECDF3B0086 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F20A1233E2A73B327950A4B962F3DE9A /* Pods-GFBarcodeScanner_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GFBarcodeScanner_Tests-dummy.m"; sourceTree = "<group>"; };
+		F28B873927BDE73F3657DCFE /* Pods_Pods_GFBarcodeScanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pods_GFBarcodeScanner_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBC309992B72DEDC75C729945B916976 /* Pods-GFBarcodeScanner_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GFBarcodeScanner_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C80675B6FB1297F536DBCD7EB3E31017 /* Foundation.framework in Frameworks */,
+				40CEF4037B78CAD53A9E3CE7 /* Pods_Pods_GFBarcodeScanner_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				001947072578398E0A4458ED4747AAC4 /* Foundation.framework in Frameworks */,
+				A1C941E6934E7E75FEE42EFF /* Pods_GFBarcodeScanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E73150A1F2A82912068C40CB22CAE8 /* Foundation.framework in Frameworks */,
+				3DEBD87EB5634D31A25BCFBE /* Pods_Pods_GFBarcodeScanner_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +173,7 @@
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				421BC115E8AB76E7DA10816092C533CE /* Products */,
 				D395FAB678585028306BC506A0AF18A5 /* Targets Support Files */,
+				CAD74D2707D6379B49F88B04 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,8 +213,25 @@
 			isa = PBXGroup;
 			children = (
 				5E0D919E635D23B70123790B8308F8EF /* iOS */,
+				C1BC47D00E67DDFC590283E8 /* Pods_GFBarcodeScanner.framework */,
+				D1919888FC6EA42CB0662F61 /* Pods_Pods_GFBarcodeScanner_Example.framework */,
+				F28B873927BDE73F3657DCFE /* Pods_Pods_GFBarcodeScanner_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CAD74D2707D6379B49F88B04 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				99881241D0B03E203A7C106C /* Pods-GFBarcodeScanner.debug.xcconfig */,
+				D1362080B19B9AEE3892008B /* Pods-GFBarcodeScanner.release.xcconfig */,
+				3BE3D97DC1704AAAAC4F80AD /* Pods-Pods-GFBarcodeScanner_Example.debug.xcconfig */,
+				DC0106F1E0CEBEC46ED586A5 /* Pods-Pods-GFBarcodeScanner_Example.release.xcconfig */,
+				2563F9EABC9F3119857B1C55 /* Pods-Pods-GFBarcodeScanner_Tests.debug.xcconfig */,
+				E0D1846DD452EF9C3426992E /* Pods-Pods-GFBarcodeScanner_Tests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		D395FAB678585028306BC506A0AF18A5 /* Targets Support Files */ = {
@@ -267,6 +300,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F28370A7B952E2253009F85E7073E43B /* Build configuration list for PBXNativeTarget "Pods-GFBarcodeScanner_Tests" */;
 			buildPhases = (
+				FAC07D78CF3D32C3199903F5 /* [CP] Check Pods Manifest.lock */,
 				2FDF4718106CB8CDE2E251B21B61DC71 /* Sources */,
 				D663A4ECA3FF0233328B82713D7DD124 /* Frameworks */,
 				81BF7E25C659F027EDE7952641C137BE /* Headers */,
@@ -285,6 +319,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 992F5A0E130E292CA9E4F4B3518DE118 /* Build configuration list for PBXNativeTarget "GFBarcodeScanner" */;
 			buildPhases = (
+				86926EBAC95937833A3E145F /* [CP] Check Pods Manifest.lock */,
 				CC9C73F54C4F9ECBCDF8B1A5E0E32AB1 /* Sources */,
 				3F72953EC0221506AC381A119C4A3AD1 /* Frameworks */,
 				D3E515DC3E18AC7BD4B4F7E69C670BB3 /* Headers */,
@@ -302,6 +337,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13528166D98CEEC4E8AB769F7E4D714C /* Build configuration list for PBXNativeTarget "Pods-GFBarcodeScanner_Example" */;
 			buildPhases = (
+				DB2ABEF3682EC73A0C375423 /* [CP] Check Pods Manifest.lock */,
 				09799073073C88FE330F0C1F44681DE4 /* Sources */,
 				329C0382B0034C48478BEDDEB8FBCBC7 /* Frameworks */,
 				23AE4620041E6D6137B3FC46A4BE5473 /* Headers */,
@@ -323,20 +359,20 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					947B52FF25E668D579FA60D2F2C4E91A = {
 						LastSwiftMigration = 1200;
 					};
 				};
 			};
-			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "_Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
 			productRefGroup = 421BC115E8AB76E7DA10816092C533CE /* Products */;
@@ -349,6 +385,75 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		86926EBAC95937833A3E145F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GFBarcodeScanner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB2ABEF3682EC73A0C375423 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pods-GFBarcodeScanner_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAC07D78CF3D32C3199903F5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Pods-GFBarcodeScanner_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		09799073073C88FE330F0C1F44681DE4 /* Sources */ = {
@@ -412,7 +517,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-GFBarcodeScanner_Tests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-GFBarcodeScanner_Tests/Pods-GFBarcodeScanner_Tests.modulemap";
@@ -446,7 +551,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-GFBarcodeScanner_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-GFBarcodeScanner_Example/Pods-GFBarcodeScanner_Example.modulemap";
@@ -481,7 +586,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-GFBarcodeScanner_Example/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-GFBarcodeScanner_Example/Pods-GFBarcodeScanner_Example.modulemap";
@@ -505,7 +610,7 @@
 			baseConfigurationReference = 873AFC431467ACDB0DD47D43917936A0 /* GFBarcodeScanner.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -518,7 +623,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/GFBarcodeScanner/GFBarcodeScanner-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/GFBarcodeScanner/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/GFBarcodeScanner/GFBarcodeScanner.modulemap";
 				PRODUCT_MODULE_NAME = GFBarcodeScanner;
@@ -538,6 +643,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -560,6 +666,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -587,7 +694,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -614,7 +721,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/GFBarcodeScanner/GFBarcodeScanner-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/GFBarcodeScanner/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/GFBarcodeScanner/GFBarcodeScanner.modulemap";
 				PRODUCT_MODULE_NAME = GFBarcodeScanner;
@@ -635,6 +742,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -657,6 +765,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -681,10 +790,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
@@ -705,7 +815,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-GFBarcodeScanner_Tests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-GFBarcodeScanner_Tests/Pods-GFBarcodeScanner_Tests.modulemap";
@@ -734,7 +844,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "_Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */,
