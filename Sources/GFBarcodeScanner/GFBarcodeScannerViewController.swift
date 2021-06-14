@@ -11,8 +11,11 @@ import UIKit
 
 /// Enum describing the status of the iPhone torch
 public enum GFTorchStatus {
+    /// Torch is ON
     case on
+    /// Torch is OFF
     case off
+    /// Torch not available
     case unavailable
 }
 
@@ -22,17 +25,29 @@ public enum GFTorchStatus {
 /// otherwise we assume the BarcodeViewController will be embedded
 /// into a containing VC providing the close button and the toolbar
 public struct GFBarcodeScannerOptions {
-    var closeButtonText:String = "" // Text for the close button
-    var closeButtonTextColor:UIColor = UIColor.black // Text color for close button
-    var backgroundColor:UIColor = UIColor.white // Toolbar background color
-    var toolbarHeight:CGFloat = 60.0 // Height of the toolbar
-    var fullScreen:Bool = false // fullscreen mode
-    var drawRectangles:Bool = false // draw a rectangle when a barcode is detected
+    /// Text for the close button
+    var closeButtonText:String = ""
+    /// Text color for close button
+    var closeButtonTextColor:UIColor = UIColor.black
+    /// Toolbar background color
+    var backgroundColor:UIColor = UIColor.white
+    /// Height of the toolbar
+    var toolbarHeight:CGFloat = 60.0
+    /// fullscreen mode
+    var fullScreen:Bool = false
+    /// draw a rectangle when a barcode is detected
+    var drawRectangles:Bool = false
     
     init() {
         self.init(fullScreen: false)
     }
     
+    /// Initialiser with the ability to configure fullscreen
+    ///
+    /// If fullscreen is configured, the view controller need to draw a toolbar to provide
+    /// a close button. Otherwise there is no need for toolbar as the parent view controller
+    /// can provide one.
+    /// - Parameter fullScreen: true to configure fullscreen
     public init(fullScreen:Bool) {
         if fullScreen {
             closeButtonText = "Close"
@@ -100,14 +115,20 @@ public class GFBarcodeScannerViewController : UIViewController {
         self.scanner?.stopScanning()
     }
     
+    /// Used to get an image from library
+    /// - Parameter callback: callback with an optional UIImage
     public func getImage(callback: @escaping((UIImage?) ->Void)) {
         self.getImageCallback = callback
     }
     
+    /// Check if the torch is available
+    /// - Returns: true if torch is available
     public func isTorchAvailable() -> Bool {
         return checkTorchAvailability()
     }
     
+    /// Toggles the torch status
+    /// - Returns: the new ``GFTorchStatus``
     @discardableResult public func toggleTorch() -> GFTorchStatus {
         let on = torchStatus != .on ? true : false
         torchStatus = changeTorchStatus(on:on)

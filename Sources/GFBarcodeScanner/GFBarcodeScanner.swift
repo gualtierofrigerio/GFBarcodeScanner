@@ -10,19 +10,26 @@ import QuartzCore
 import AVFoundation
 import UIKit
 
+/// Conveniente protocol combining AVCaptureVideoDataOutputSampleBufferDelegate and AVCaptureMetadataOutputObjectsDelegate
 protocol AVCaptureMetaAndVideoDelegate: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureMetadataOutputObjectsDelegate {}
 
 @available(iOS 10.0, *)
 /// A class used to perform barcode scanning
 /// the scanning is performed via AVCaptureDevice
 public class GFBarcodeScanner:NSObject {
-    
+    /// ``GFBarcodeScannerOptions`` containing options for the scanner
     var options:GFBarcodeScannerOptions!
+    /// The optional delegate of AVCapture
     var delegate:AVCaptureMetaAndVideoDelegate?
+    /// View containing the camera feed
     var cameraView:UIView?
+    /// Layer to show the camera preview
     var previewLayer:AVCaptureVideoPreviewLayer?
+    /// Layer containing rectangles with the recognized objects
     var rectanglesLayer:CAShapeLayer?
+    /// DispatchQueue used to perform recognition
     var queue:DispatchQueue!
+    /// Array of AVMetadataObject we want to recognize
     let objectTypes:[AVMetadataObject.ObjectType] = [AVMetadataObject.ObjectType.aztec,
                                                      AVMetadataObject.ObjectType.code39,
                                                      AVMetadataObject.ObjectType.code39Mod43,
@@ -37,12 +44,22 @@ public class GFBarcodeScanner:NSObject {
                                                      AVMetadataObject.ObjectType.qr,
                                                      AVMetadataObject.ObjectType.upce
                                                      ]
+    /// The AVCaptureSession used to perform live scanning
     var session:AVCaptureSession?
     
+    /// Convenience init with a camera view and the AV delegate
+    /// - Parameters:
+    ///   - cameraView: UIView where the preview will be displayed
+    ///   - delegate: The AVCapture delegate
     convenience init(cameraView:UIView, delegate:AVCaptureMetaAndVideoDelegate) {
         self.init(options:GFBarcodeScannerOptions(), cameraView:cameraView, delegate:delegate)
     }
     
+    /// Initialise the scanner with options, a camera view and a delegate
+    /// - Parameters:
+    ///   - options: ``GFBarcodeScannerOptions`` containing options for the scanner
+    ///   - cameraView: UIView where the preview will be displayed
+    ///   - delegate: The AVCapture delegate
     init(options:GFBarcodeScannerOptions, cameraView:UIView, delegate:AVCaptureMetaAndVideoDelegate) {
         self.options = options
         self.cameraView = cameraView
