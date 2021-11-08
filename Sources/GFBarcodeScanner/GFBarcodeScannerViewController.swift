@@ -99,14 +99,22 @@ public class GFBarcodeScannerViewController : UIViewController {
     /// - Parameters:
     ///   - options: an optional GFBarcodeScannerOptions struct
     ///   - completion: completion handler called when a barcode is detected
-    public func startScanning(options:GFBarcodeScannerOptions?,
-                              completion:@escaping(_ results:[String], _ error:NSError?) -> Void) {
+    public func startScanning(options: GFBarcodeScannerOptions?,
+                              completion: @escaping(_ results:[String], _ error:NSError?) -> Void) {
         self.completion = completion
         self.options = options
         if cameraView == nil {
             configureView()
         }
-        self.scanner = GFBarcodeScanner(cameraView: cameraView, delegate:self)
+        if let options = options {
+            self.scanner = GFBarcodeScanner(options: options,
+                                            cameraView: cameraView,
+                                            delegate: self)
+        }
+        else {
+            self.scanner = GFBarcodeScanner(cameraView: cameraView,
+                                            delegate:self)
+        }
         scanner?.startScanning()
     }
     
