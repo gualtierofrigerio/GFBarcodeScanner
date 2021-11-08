@@ -26,17 +26,17 @@ public enum GFTorchStatus {
 /// into a containing VC providing the close button and the toolbar
 public struct GFBarcodeScannerOptions {
     /// Text for the close button
-    var closeButtonText:String = ""
+    public var closeButtonText:String = ""
     /// Text color for close button
-    var closeButtonTextColor:UIColor = UIColor.black
+    public var closeButtonTextColor:UIColor = UIColor.black
     /// Toolbar background color
-    var backgroundColor:UIColor = UIColor.white
+    public var backgroundColor:UIColor = UIColor.white
     /// Height of the toolbar
-    var toolbarHeight:CGFloat = 60.0
+    public var toolbarHeight:CGFloat = 60.0
     /// fullscreen mode
-    var fullScreen:Bool = false
+    public var fullScreen:Bool = false
     /// draw a rectangle when a barcode is detected
-    var drawRectangles:Bool = false
+    public var drawRectangles:Bool = false
     
     init() {
         self.init(fullScreen: false)
